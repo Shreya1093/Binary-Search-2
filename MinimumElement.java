@@ -9,9 +9,9 @@ Given the sorted rotated array nums of unique elements, return the minimum eleme
 
 You must write an algorithm that runs in O(log n) time.*/
 
-// Time Complexity :O(logn)
-// Space Complexity :O(1)
-/* Approach:
+/*Time Complexity :O(logn)
+Space Complexity :O(1)
+Approach:
 We apply a modified binary search to find the minimum element in a rotated sorted array.If the current subarray [low..high] is already sorted, the minimum is nums[low].Otherwise, we check if mid is the minimum by comparing it with its neighbors.
 Based on whether the left half is sorted or not, we decide which half to continue searching in.*/
 class MinimumElement {
@@ -21,12 +21,12 @@ class MinimumElement {
         }
         int low = 0;
         int high = nums.length - 1;
+        // If subarray is already sorted, the leftmost element is the minimum
+        if (nums[low] <= nums[high]) {
+            return nums[low];
+        }
         // Perform binary search
         while (low <= high) {
-            // If subarray is already sorted, the leftmost element is the minimum
-            if (nums[low] <= nums[high]) {
-                return nums[low];
-            }
             int mid = low + (high - low) / 2;// Prevent overflow
             // Check if nums[mid] is the minimum element.It should be smaller than both
             // neighbors (handle edges safely) and if mid is at the low boundary (mid ==
